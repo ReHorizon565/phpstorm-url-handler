@@ -13,7 +13,10 @@ pattern=".*file(:\/\/|\=)(.*)&line=(.*)"
 # Get the file path.
 file=$(echo "${arg}" | sed -r "s/${pattern}/\2/")
 
-# Get the line number.
+# Replace %2F with '/'
+file=$(echo "$file" | sed -r 's/%2F/\//g')
+
+# Get the line number
 line=$(echo "${arg}" | sed -r "s/${pattern}/\3/")
 
 # Check if phpstorm|pstorm command exist.
